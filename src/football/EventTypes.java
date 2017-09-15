@@ -59,6 +59,44 @@ public class EventTypes {
     } // underOverFT2WayOver
 
 
+    // Under/ Over Home FT
+    // Under
+    public double underOverHomeFT2WayUnder(double line) {
+        double probunderOverHomeFT2WayUnder = .0;
+        for (int i = 0; i <= line - 0.5; i++) {
+            for (int j = 0; j <= sumLimit; j++) {
+                probunderOverHomeFT2WayUnder = probunderOverHomeFT2WayUnder + myScore.getScoreFT(i, j);
+            }
+        }
+        return probunderOverHomeFT2WayUnder;
+    } // underOverHomeFT2WayUnder
+
+    // Over
+    public double underOverHomeFT2WayOver(double line) {
+        double probUnderOverHomeFT2WayOver = 1 - underOverHomeFT2WayUnder(line);
+        return probUnderOverHomeFT2WayOver;
+    } // underOverHomeFT2WayOver
+
+
+    // Under/ Over Away FT
+    // Under
+    public double underOverAwayFT2WayUnder(double line) {
+        double probunderOverAwayFT2WayUnder = .0;
+        for (int j = 0; j <= line - 0.5; j++) {
+            for (int i = 0; i <= sumLimit; i++) {
+                probunderOverAwayFT2WayUnder = probunderOverAwayFT2WayUnder + myScore.getScoreFT(i, j);
+            }
+        }
+        return probunderOverAwayFT2WayUnder;
+    } // underOverAwayFT2WayUnder
+
+    // Over
+    public double underOverAwayFT2WayOver(double line) {
+        double probunderOverAwayFT2WayOver = 1 - underOverAwayFT2WayUnder(line);
+        return probunderOverAwayFT2WayOver;
+    } // underOverAwayFT2WayOver
+
+
     // Both Teams to Score FT
     // No
     public double bothTeamsToScoreFTNo() {
@@ -77,6 +115,47 @@ public class EventTypes {
         double probBothTeamsToScoreFTYes = 1 - bothTeamsToScoreFTNo();
         return probBothTeamsToScoreFTYes;
     }
+
+
+    // 1st Team to Score
+    // Home
+    public double firstTeamToScoreHome() {
+        double probFirstTeamToScoreHome = (myScore.lambda / (myScore.lambda + myScore.mi)) * ( 1. - myScore.getScoreFT(0,0));
+        return probFirstTeamToScoreHome;
+    }
+
+    // Away
+    public double firstTeamToScoreAway() {
+        double probFirstTeamToScoreAway = (myScore.mi / (myScore.lambda + myScore.mi)) * ( 1. - myScore.getScoreFT(0,0));
+        return probFirstTeamToScoreAway;
+    }
+
+    // None
+    public double firstTeamToScoreNone() {
+        double probFirstTeamToScoreNone = myScore.getScoreFT(0,0);
+        return probFirstTeamToScoreNone;
+    }
+
+
+    // Margin of Victory
+
+    // Home
+    public double marginOfVictoryFTHome( int margin) {
+        double probMarginOfVictoryFTHome = .0;
+        for (int i = 0 ; i <= sumLimit; i++) {
+            probMarginOfVictoryFTHome = probMarginOfVictoryFTHome + myScore.getScoreFT(i,i - margin);
+        }
+        return probMarginOfVictoryFTHome;
+    } //marginOfVictoryFTHome
+
+    // Away
+    public double marginOfVictoryFTAway( int margin) {
+        double probMarginOfVictoryFTAway = .0;
+        for (int i = 0 ; i <= sumLimit; i++) {
+            probMarginOfVictoryFTAway = probMarginOfVictoryFTAway + myScore.getScoreFT(i - margin,i );
+        }
+        return probMarginOfVictoryFTAway;
+    } //marginOfVictoryFTAway
 
 
 
@@ -134,6 +213,44 @@ public class EventTypes {
         double probunderOverHT12WayOver = 1 - underOverHT12WayUnder(line);
         return probunderOverHT12WayOver;
     } // underOverHT12WayOver
+
+
+    // Under/ Over Home HT1
+    // Under
+    public double underOverHomeHT12WayUnder(double line) {
+        double probunderOverHomeHT12WayUnder = .0;
+        for (int i = 0; i <= line - 0.5; i++) {
+            for (int j = 0; j <= sumLimit; j++) {
+                probunderOverHomeHT12WayUnder = probunderOverHomeHT12WayUnder + myScore.getScoreHT1(i, j);
+            }
+        }
+        return probunderOverHomeHT12WayUnder;
+    } // underOverHomeHT12WayUnder
+
+    // Over
+    public double underOverHomeHT12WayOver(double line) {
+        double probunderOverHomeHT12WayOver = 1 - underOverHomeHT12WayUnder(line);
+        return probunderOverHomeHT12WayOver;
+    } // underOverHomeHT12WayOver
+
+
+    // Under/ Over Away HT1
+    // Under
+    public double underOverAwayHT12WayUnder(double line) {
+        double probunderOverAwayHT12WayUnder = .0;
+        for (int j = 0; j <= line - 0.5; j++) {
+            for (int i = 0; i <= sumLimit; i++) {
+                probunderOverAwayHT12WayUnder = probunderOverAwayHT12WayUnder + myScore.getScoreHT1(i, j);
+            }
+        }
+        return probunderOverAwayHT12WayUnder;
+    } // underOverAwayHT12WayUnder
+
+    // Over
+    public double underOverAwayHT12WayOver(double line) {
+        double probunderOverAwayHT12WayOver = 1 - underOverAwayHT12WayUnder(line);
+        return probunderOverAwayHT12WayOver;
+    } // underOverAwayHT12WayOver
 
 
     // Both Teams to Score HT1
