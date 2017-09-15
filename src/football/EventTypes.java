@@ -272,4 +272,4 @@ public class EventTypes {
         return probBothTeamsToScoreHT1Yes;
     }
 
-} // EventTypes
+} // EventTypes 
